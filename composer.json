@@ -1,0 +1,41 @@
+{
+    "name": "imdong/jpush-sdk-for-laravel",
+    "description": "JPush SDK For Laravel",
+    "type": "library",
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "version": "0.0.1",
+    "homepage": "https://github.com/imdong/jpush-sdk-for-laravel",
+    "authors": [
+        {
+            "name": "ImDong",
+            "email": "www@qs5.org",
+            "homepage": "https://www.qs5.org/",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "jpush/jpush": "^3.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "ImDong\\JPush\\": "src/"
+        }
+    },
+    "keywords": [
+        "ImDong",
+        "Laravel",
+        "JPush",
+        "极光推送"
+    ],
+    "extra": {
+        "laravel": {
+            "aliases": {
+                "JPush": "ImDong\\JPush\\Facades\\JPush"
+            },
+            "providers": [
+                "ImDong\\JPush\\Providers\\JPushServiceProvider"
+            ]
+        }
+    }
+}
