@@ -3,6 +3,7 @@
 namespace ImDong\JPush\Facades;
 
 use Illuminate\Support\Facades\Facade;
+use JPush\Client;
 
 /**
  * JPush Facade
@@ -28,5 +29,17 @@ class JPush extends Facade
     protected static function getFacadeAccessor()
     {
         return 'JPush';
+    }
+
+    /**
+     * Get JPush Client Object
+     *
+     * @return Client
+     * @author  ImDong (www@qs5.org)
+     * @created 2021-03-20 14:28
+     */
+    public static function client()
+    {
+        return self::getFacadeRoot();
     }
 }
