@@ -3,6 +3,7 @@
 namespace ImDong\JPush\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use ImDong\JPush\Contracts\JPush;
 
 /**
  * JPushServiceProvider
@@ -52,7 +53,7 @@ class JPushServiceProvider extends ServiceProvider
         $this->app->singleton('JPush', function () {
             $config = config('services.jpush', config('jpush'));
 
-            return new \JPush\Client($config['app_key'], $config['master_secret'], $config['log_file']);
+            return new JPush($config['app_key'], $config['master_secret'], $config['log_file']);
         });
     }
 
