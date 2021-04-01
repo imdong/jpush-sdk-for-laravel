@@ -35,6 +35,11 @@ class PushPayload extends PayloadAbstract
      */
     public function send(): ?array
     {
+        // 发送前操作
+        if (!$this->client->callBefore('send', $this)) {
+            return null;
+        }
+
         // 如果是批量推送
         if (JPush::isBatch()) {
             JPush::addToBatch($this);

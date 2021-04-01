@@ -31,7 +31,7 @@ abstract class PayloadAbstract
      *
      * @var JPush client
      */
-    private JPush $client;
+    protected JPush $client;
 
     /**
      * PayloadAbstract constructor.

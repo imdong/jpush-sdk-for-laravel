@@ -147,8 +147,9 @@ class JPush extends Client
      * 获取推送对象
      *
      * @return PushPayload|\JPush\PushPayload
-     * @author  ImDong (www@qs5.org)
-     * @created 2021-03-25 11:43
+     * @throws \ImDong\JPush\Exceptions\JPushLaravelException
+     * @author        ImDong (www@qs5.org)
+     * @created       2021-03-25 11:43
      */
     public function push(): PushPayload
     {
@@ -160,12 +161,30 @@ class JPush extends Client
      *
      * send 前自动调用
      *
-     * @param callable $callable 接收两个参数 callable(string $type, mixed $data): ?array
+     * @param callable $callable 接收两个参数 callable(string $type, PushPayload $data): ?array
      * @author  ImDong (www@qs5.org)
      * @created 2021-03-25 15:14
      */
     public function setBefore(callable $callable)
     {
         $this->before = $callable;
+    }
+
+    /**
+     * 回调参数
+     *
+     * @param string      $type
+     * @param PushPayload $push_payload
+     * @return bool
+     * @author  ImDong (www@qs5.org)
+     * @created 2021-03-30 16:00
+     */
+    public function callBefore(string $type, PushPayload $push_payload): bool
+    {
+        if (is_null($this->before)) {
+            return true;
+        }
+
+        return call_user_func($this->before, $type, $push_payload);
     }
 }
